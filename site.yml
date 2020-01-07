@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Install my packages
+    dnf:
+      name:
+      - powerline
+      - powerline-fonts
+      - tmux-powerline
+      - vim-powerline
+      - libdvdcss
+      state: present
