@@ -1,12 +1,19 @@
 ---
 - hosts: localhost
   tasks:
-  - name: Install my packages
-    dnf:
-      name:
-      - powerline
-      - powerline-fonts
-      - tmux-powerline
-      - vim-powerline
-      - libdvdcss
-      state: present
+    - name: Configure RPMFusion repos
+      dnf:
+        name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-31.noarch.rpm
+        state: present
+
+    - name: Install my packages
+      when: ansible_facts['distribution'] == RedHat
+      dnf:
+        name:
+        - powerline
+        - powerline-fonts
+        - tmux-powerline
+        - vim-powerline
+        - libdvdcss
+        state: present
+...
